@@ -1,19 +1,19 @@
 from django.contrib import admin
 from .models import Curso, Leccion, Flashcard, QuizQuestion, QuizOption
 
+# Configuración de títulos del Panel de Administración
+admin.site.site_header = "Database Apuntate"
+admin.site.site_title = "Database Apuntate"
+admin.site.index_title = "Gestión de la Base de Datos"
+
 # Inline para opciones de Quiz dentro de QuizQuestion (DEFINICIÓN A NIVEL SUPERIOR)
-# Esta clase será referenciada por QuizQuestionAdmin y por QuizQuestionInline.
 class QuizOptionInline(admin.TabularInline):
     model = QuizOption
     extra = 4 # Muestra 4 campos de opción vacíos por defecto.
     fk_name = 'question' 
 
-# Inline para Preguntas de Quiz dentro de Leccion (AHORA INCLUYE SUS PROPIAS OPCIONES)
-# ¡IMPORTANTE! Cambiado a StackedInline para probar la renderización
 class QuizQuestionInline(admin.StackedInline): # <-- ¡CAMBIO AQUÍ!
     model = QuizQuestion
-    # Aquí es donde incluimos las opciones para que aparezcan al añadir/editar preguntas desde la lección.
-    inlines = [QuizOptionInline] # <-- REFERENCIA A LA CLASE DE ARRIBA
     extra = 1
 
 # Inline para Flashcards dentro de Leccion
