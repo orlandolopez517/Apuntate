@@ -11,10 +11,15 @@ function MemoryGame() {
   const [matchedCards, setMatchedCards] = useState([]);
   const [gameStarted, setGameStarted] = useState(false);
   const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem('token');
 
   const fetchRawFlashcards = useCallback(() => {
     setLoading(true);
-    fetch(`${API_BASE_URL}/api/flashcards/`) 
+    fetch(`${API_BASE_URL}/api/flashcards/`, {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    }) 
       .then(response => response.json())
       .then(data => {
         setAllRawFlashcards(data); 
@@ -24,7 +29,7 @@ function MemoryGame() {
         console.error("Error fetching all flashcards:", error);
         setLoading(false);
       });
-  }, []); 
+  }, [token]); 
 
   useEffect(() => {
     fetchRawFlashcards();

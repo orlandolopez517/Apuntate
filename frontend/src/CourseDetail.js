@@ -6,6 +6,7 @@ import './App.css'; // Asegúrate de que los estilos se apliquen
 
 function CourseDetail() {
   const { id } = useParams();
+  const token = localStorage.getItem('token');
   const [curso, setCurso] = useState(null);
   const [leccionActual, setLeccionActual] = useState(null);
   const [showActivities, setShowActivities] = useState(false); 
@@ -18,7 +19,11 @@ function CourseDetail() {
   const [quizStarted, setQuizStarted] = useState(false); // Para controlar si el quiz ha iniciado
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/cursos/${id}/`)
+    fetch(`${API_BASE_URL}/api/cursos/${id}/`, {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    })
       .then(response => response.json())
       .then(data => {
         setCurso(data);
@@ -27,18 +32,22 @@ function CourseDetail() {
         }
       })
       .catch(error => console.error("Error fetching course:", error));
-  }, [id]);
+  }, [id, token]);
 
   // Función para obtener las preguntas del quiz de la API
   const fetchQuizQuestions = useCallback((leccionId) => {
-    fetch(`${API_BASE_URL}/api/lecciones/${leccionId}/quiz_questions/`)
+    fetch(`${API_BASE_URL}/api/lecciones/${leccionId}/quiz_questions/`, {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    })
       .then(response => response.json())
       .then(data => {
         setQuizQuestions(data);
         console.log("Preguntas del quiz cargadas:", data); // Para depuración
       })
       .catch(error => console.error("Error fetching quiz questions:", error));
-  }, []); // Dependencia vacía para que la función no cambie.
+  }, [token]); 
 
   // Cuando la lección actual cambia, colapsa las actividades y reinicia el quiz
   useEffect(() => {

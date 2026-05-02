@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
 from .models import Curso, Leccion, Flashcard, QuizQuestion, QuizOption # Importa todos los modelos necesarios
 
 # Serializador para el modelo Flashcard
@@ -44,3 +45,14 @@ class QuizQuestionSerializer(serializers.ModelSerializer):
         model = QuizQuestion
         fields = ['id', 'question_text', 'options'] # Exponemos el texto de la pregunta y sus opciones.
 
+# --- SERIALIZADOR PARA REGISTRO DE USUARIOS ---
+class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        return user

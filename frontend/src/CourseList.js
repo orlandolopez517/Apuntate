@@ -8,23 +8,31 @@ import './App.css';
 function CourseList() {
   const [cursos, setCursos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/cursos/`)
+    fetch(`${API_BASE_URL}/api/cursos/`, {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    })
       .then(response => response.json())
       .then(data => {
         setCursos(data);
         setLoading(false);
       })
-      .catch(error => {
-        console.error("Error fetching courses:", error);
-        setLoading(false);
-      });
-  }, []);
+  }, [token]);
 
-  if (loading) {
-    return <p>Cargando cursos...</p>;
+  if (!token) {
+    return (
+      <div className="course-list-container">
+        <h2>Contenido Privado</h2>
+        <p>Por favor, <Link to="/login">inicia sesión</Link> para ver tus apuntes.</p>
+      </div>
+    );
   }
+
+  if (loading) return <p>Cargando cursos...</p>;
 
   return (
     // ¡Aquí se asegura que este div tenga la clase 'course-list-container'!
