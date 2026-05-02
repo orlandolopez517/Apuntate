@@ -1,0 +1,195 @@
+{% extends "admin/login.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    /* VARIABLES PARA MODO CLARO */
+    :root {
+        --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        --card-bg: rgba(255, 255, 255, 0.9);
+        --card-border: rgba(0, 0, 0, 0.1);
+        --label-color: #5d6d7e;
+        --input-bg: #ffffff;
+        --input-text: #2c3e50;
+        --input-border: #3b8d99;
+    }
+
+    /* VARIABLES PARA MODO OSCURO */
+    html[data-theme="dark"] {
+        --bg-gradient: linear-gradient(135deg, #15202b 0%, #34495e 100%);
+        --card-bg: rgba(255, 255, 255, 0.05);
+        --card-border: rgba(255, 255, 255, 0.1);
+        --label-color: #bdc3c7;
+        --input-bg: rgba(255, 255, 255, 0.9);
+        --input-text: #2c3e50;
+        --input-border: #3b8d99;
+    }
+
+    /* OCULTAR EL BOTÓN POR DEFECTO DE DJANGO */
+    #header-theme-switcher, .theme-toggle {
+        display: none !important;
+    }
+
+    body.login {
+        background: var(--bg-gradient) !important;
+        font-family: 'Poppins', sans-serif !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 100vh !important;
+        margin: 0 !important;
+        transition: background 0.4s ease;
+    }
+
+    #container {
+        background: var(--card-bg) !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid var(--card-border) !important;
+        border-radius: 15px !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+        width: 100% !important;
+        max-width: 400px !important;
+        padding: 40px !important;
+        margin: 0 !important;
+        position: relative !important;
+        top: auto !important;
+        transition: background 0.4s ease, border 0.4s ease;
+    }
+
+    #header {
+        background: transparent !important;
+        text-align: center !important;
+        padding: 0 0 20px 0 !important;
+        border-bottom: 2px solid #3b8d99 !important;
+        margin-bottom: 30px !important;
+    }
+
+    #header a {
+        color: #3b8d99 !important; /* Color universal visible en ambos temas */
+        font-size: 1.5rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        text-decoration: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transition: color 0.3s ease !important;
+    }
+
+    /* Agregamos el lápiz antes del texto */
+    #header a::before {
+        content: '✏️';
+        margin-right: 12px;
+        font-size: 1.4rem;
+        filter: none !important; /* Evita cambios de color extraños */
+    }
+
+    #content-main {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .form-row {
+        padding: 15px 0 !important;
+        border: none !important;
+    }
+
+    .form-row label {
+        color: var(--label-color) !important;
+        font-weight: 400 !important;
+        margin-bottom: 10px !important;
+        font-size: 0.9rem !important;
+    }
+
+    .form-row input {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        border-radius: 8px !important;
+        border: 2px solid var(--input-border) !important;
+        padding: 12px !important;
+        background: var(--input-bg) !important;
+        color: var(--input-text) !important;
+        transition: all 0.3s ease;
+    }
+
+    /* Botón Toggle Personalizado */
+    #theme-toggle {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        z-index: 100;
+    }
+    html[data-theme="dark"] #theme-toggle { background: rgba(0, 0, 0, 0.3); }
+    #theme-toggle:hover { transform: scale(1.1); }
+
+    .form-row input:focus {
+        border-color: #3b8d99 !important;
+        box-shadow: 0 0 10px rgba(59, 141, 153, 0.3) !important;
+        outline: none;
+    }
+
+    .submit-row input {
+        background: linear-gradient(135deg, #3b8d99 0%, #1a5f7a 100%) !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 15px !important;
+        color: white !important;
+        font-weight: 600 !important;
+        width: 100% !important;
+        cursor: pointer !important;
+        margin-top: 20px !important;
+        transition: transform 0.2s ease !important;
+    }
+
+    .submit-row input:hover {
+        transform: scale(1.02);
+        filter: brightness(1.1);
+    }
+
+    .errornote {
+        background: #e74c3c !important;
+        border-radius: 8px !important;
+        border: none !important;
+        color: white !important;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const html = document.documentElement;
+        const container = document.getElementById('container');
+        
+        // Evitar duplicados si el script se ejecuta dos veces
+        if (document.getElementById('theme-toggle')) return;
+
+        const toggleBtn = document.createElement('button');
+        toggleBtn.id = 'theme-toggle';
+        toggleBtn.type = 'button';
+        
+        // Forzamos a que empiece en light si no hay nada guardado para evitar el "tercer estado"
+        const savedTheme = localStorage.getItem('admin-theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        toggleBtn.innerHTML = savedTheme === 'dark' ? '☀️' : '🌙';
+
+        toggleBtn.onclick = () => {
+            const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('admin-theme', newTheme);
+            toggleBtn.innerHTML = newTheme === 'dark' ? '☀️' : '🌙';
+        };
+        container.appendChild(toggleBtn);
+    });
+</script>
+{% endblock %}

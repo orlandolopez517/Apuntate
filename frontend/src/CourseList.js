@@ -31,7 +31,7 @@ function CourseList() {
     <div>
       <div className="hero-section">
         <h1>Bienvenido a Apuntate</h1>
-        <p>Repasa, aprende y domina tus temas con cuestionarios interactivos.</p>
+        <p>Repasa, aprende y domina tus temas con cuestionarios interactivos</p>
       </div>
       <div className="course-list-container"> 
         <h1>Tus Apuntes Disponibles</h1>

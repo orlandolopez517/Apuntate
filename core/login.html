@@ -1,0 +1,111 @@
+{% extends "admin/login.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    /* Aplicamos el fondo oscuro con degradado similar a tu CourseDetail */
+    body.login {
+        background: linear-gradient(135deg, #15202b 0%, #34495e 100%) !important;
+        font-family: 'Poppins', sans-serif !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 100vh !important;
+        margin: 0 !important;
+    }
+
+    /* Efecto de vidrio (Glassmorphism) para el contenedor */
+    #container {
+        background: rgba(255, 255, 255, 0.05) !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 15px !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
+        width: 100% !important;
+        max-width: 400px !important;
+        padding: 40px !important;
+        margin: 0 !important;
+        position: relative !important;
+        top: auto !important;
+    }
+
+    #header {
+        background: transparent !important;
+        color: white !important;
+        text-align: center !important;
+        padding: 0 0 20px 0 !important;
+        border-bottom: 2px solid #3b8d99 !important; /* Color cyan de tu proyecto */
+        margin-bottom: 30px !important;
+    }
+
+    #header a {
+        color: #ffffff !important;
+        font-size: 1.5rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        text-decoration: none !important;
+    }
+
+    #content-main {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .form-row {
+        padding: 15px 0 !important;
+        border: none !important;
+    }
+
+    .form-row label {
+        color: #bdc3c7 !important;
+        font-weight: 400 !important;
+        margin-bottom: 10px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Estilo de los campos de entrada */
+    .form-row input {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        border-radius: 8px !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        padding: 12px !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        color: #2c3e50 !important;
+        transition: all 0.3s ease;
+    }
+
+    .form-row input:focus {
+        border-color: #3b8d99 !important;
+        box-shadow: 0 0 10px rgba(59, 141, 153, 0.3) !important;
+        outline: none;
+    }
+
+    /* Botón con el degradado de tu aplicación */
+    .submit-row input {
+        background: linear-gradient(135deg, #3b8d99 0%, #1a5f7a 100%) !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 15px !important;
+        color: white !important;
+        font-weight: 600 !important;
+        width: 100% !important;
+        cursor: pointer !important;
+        margin-top: 20px !important;
+        transition: transform 0.2s ease !important;
+    }
+
+    .submit-row input:hover {
+        transform: scale(1.02);
+        filter: brightness(1.1);
+    }
+
+    .errornote {
+        background: #e74c3c !important;
+        border-radius: 8px !important;
+        border: none !important;
+    }
+</style>
+{% endblock %}

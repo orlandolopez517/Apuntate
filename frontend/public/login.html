@@ -1,0 +1,139 @@
+{% extends "admin/login.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<!-- Importamos la fuente Poppins para mantener la consistencia con el frontend -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    /* Reset y Fondo General */
+    body.login {
+        background: linear-gradient(135deg, #1a5f7a 0%, #34495e 100%) !important;
+        font-family: 'Poppins', sans-serif !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 100vh !important;
+        margin: 0 !important;
+    }
+
+    /* Contenedor Principal (Efecto Glassmorphism) */
+    #container {
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+        width: 100% !important;
+        max-width: 420px !important;
+        padding: 30px !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        top: auto !important;
+    }
+
+    /* Encabezado del Panel */
+    #header {
+        background: transparent !important;
+        color: white !important;
+        text-align: center !important;
+        padding-bottom: 20px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        margin-bottom: 20px !important;
+    }
+
+    #header a {
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        font-size: 1.8rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+        text-decoration: none !important;
+    }
+
+    /* Cuerpo del Formulario */
+    #content-main {
+        width: 100% !important;
+        float: none !important;
+        margin: 0 !important;
+    }
+
+    .form-row {
+        padding: 12px 0 !important;
+        border: none !important;
+    }
+
+    .form-row label {
+        color: #f8f9fa !important;
+        font-weight: 500 !important;
+        margin-bottom: 8px !important;
+        display: block !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Estilo de los Inputs */
+    .form-row input {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        border-radius: 10px !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        padding: 12px 15px !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        color: #2c3e50 !important;
+        font-size: 1rem !important;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-row input:focus {
+        border-color: #3b8d99 !important;
+        outline: none;
+    }
+
+    /* Botón de Iniciar Sesión */
+    .submit-row {
+        background: transparent !important;
+        border: none !important;
+        padding: 25px 0 0 0 !important;
+        margin: 0 !important;
+        text-align: center !important;
+    }
+
+    .submit-row input {
+        background: linear-gradient(135deg, #3b8d99 0%, #1a5f7a 100%) !important;
+        border: none !important;
+        border-radius: 10px !important;
+        padding: 14px 20px !important;
+        color: white !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        cursor: pointer !important;
+        width: 100% !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .submit-row input:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.1) !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* Errores y enlaces de ayuda */
+    .errornote {
+        border-radius: 8px !important;
+        background-color: #e74c3c !important;
+        font-size: 0.85rem !important;
+    }
+
+    .password-reset-link {
+        text-align: center !important;
+        margin-top: 15px !important;
+    }
+
+    .password-reset-link a {
+        color: #bdc3c7 !important;
+        font-size: 0.8rem !important;
+    }
+</style>
+{% endblock %}
