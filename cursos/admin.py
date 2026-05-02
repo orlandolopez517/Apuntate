@@ -2,9 +2,9 @@ from django.contrib import admin
 from .models import Curso, Leccion, Flashcard, QuizQuestion, QuizOption
 
 # Configuración de títulos del Panel de Administración
-admin.site.site_header = "Database Apuntate"
-admin.site.site_title = "Database Apuntate"
-admin.site.index_title = "Gestión de la Base de Datos"
+admin.site.site_header = "Apuntate"
+admin.site.site_title = "Login Apuntate"
+admin.site.index_title = "Administrador de contenidos"
 
 # Inline para opciones de Quiz dentro de QuizQuestion (DEFINICIÓN A NIVEL SUPERIOR)
 class QuizOptionInline(admin.TabularInline):
