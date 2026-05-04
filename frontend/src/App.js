@@ -5,6 +5,8 @@ import CourseDetail from './CourseDetail';
 import MemoryGame from './MemoryGame'; // <-- ¡Importa el componente del juego de memoria!
 import Register from './Register';
 import Login from './Login';
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 import './App.css'; // Tus estilos generales
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
           <Route path="/juego-memorizar" element={<MemoryGame />} /> {/* <-- ¡La ruta del juego está de vuelta! */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:uid/:token" element={<ResetPassword />} />
         </Routes>
       </div>
     </Router>

@@ -91,6 +91,9 @@ function Login() {
         <p style={{marginTop: '15px'}}>
           ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
         </p>
+        <p style={{marginTop: '10px'}}>
+          <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
+        </p>
       </div>
     </div>
   );

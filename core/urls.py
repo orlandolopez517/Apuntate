@@ -4,11 +4,15 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+from cursos.auth_views import PasswordResetRequestView, PasswordResetConfirmView
 
 urlpatterns = [
     path('admin/', admin.site.urls), # Ruta para el panel de administración de Django
     path('api/', include('cursos.urls')), # Incluye las rutas de tu app 'cursos' bajo '/api/'
     path('ckeditor/', include('ckeditor_uploader.urls')), # ¡Ruta necesaria para CKEditor!
+    # Endpoint para recuperación de contraseña solicitado por el frontend
+    path('api/password-reset/', PasswordResetRequestView.as_view(), name='password_reset_api'),
+    path('api/password-reset-confirm/<str:uidb64>/<str:token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('', TemplateView.as_view(template_name='index.html')), # Sirve el frontend React en la raíz
     # Esta ruta "catch-all" debe ir al final. Sirve el frontend de React para cualquier
     # ruta no capturada anteriormente, permitiendo que React Router maneje el enrutamiento del lado del cliente.
