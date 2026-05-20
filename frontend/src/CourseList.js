@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import API_BASE_URL from './config';
 // Asegúrate de importar CourseCard si lo tienes en un archivo separado
@@ -9,6 +9,75 @@ function CourseList() {
   const [cursos, setCursos] = useState([]);
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem('token');
+  const canvasRef = useRef(null);
+
+  // Efecto para la animación de partículas (solo si no hay token)
+  useEffect(() => {
+    if (token) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = 60;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 2;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // Partículas blancas para máximo contraste
+        ctx.fill();
+      }
+    }
+
+    const init = () => {
+      resize();
+      particles = Array.from({ length: particleCount }, () => new Particle());
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, i) => {
+        p.update();
+        p.draw();
+        for (let j = i + 1; j < particles.length; j++) {
+          const dist = Math.hypot(p.x - particles[j].x, p.y - particles[j].y);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.6 - dist / 120})`; // Líneas blancas sutiles
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      });
+      requestAnimationFrame(animate);
+    };
+
+    init();
+    animate();
+    window.addEventListener('resize', resize);
+    return () => window.removeEventListener('resize', resize);
+  }, [token]);
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/cursos/`, {
@@ -26,9 +95,10 @@ function CourseList() {
   if (!token) {
     return (
       <div className="landing-container">
+        <canvas ref={canvasRef} className="particle-canvas" />
         <div className="landing-hero">
           <div className="hero-text">
-            <span className="hero-badge">Educación Online</span>
+            <span className="hero-badge">Apuntate Online</span>
             <h1>Aprendizaje Moderno y <span>Experiencia Digital</span></h1>
             <p>
               Organiza tus apuntes, crea lecciones interactivas y domina cualquier tema 
