@@ -25,11 +25,47 @@ function CourseList() {
 
   if (!token) {
     return (
-      <div className="course-list-container">
-        <h2>Contenido Privado</h2>
-        <p>
-          Por favor, <Link to="/login">inicia sesión</Link> o <Link to="/register">regístrate</Link> para ver tus apuntes.
-        </p>
+      <div className="landing-container">
+        <div className="landing-hero">
+          <div className="hero-text">
+            <span className="hero-badge">Educación Online</span>
+            <h1>Aprendizaje Moderno y <span>Experiencia Digital</span></h1>
+            <p>
+              Organiza tus apuntes, crea lecciones interactivas y domina cualquier tema 
+              con nuestra plataforma diseñada para el éxito académico.
+            </p>
+            <div className="hero-buttons">
+              <Link to="/login" className="btn-primary-landing">Iniciar Sesión</Link>
+              <Link to="/register" className="btn-secondary-landing">Crear Cuenta</Link>
+            </div>
+          </div>
+          
+          <div className="hero-image">
+            <div className="illustration-wrapper">
+              <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="250" cy="250" r="200" fill="#f0f7ff" />
+                {/* Lápiz */}
+                <rect x="360" y="80" width="25" height="220" rx="4" fill="#ffd54f" transform="rotate(15 360 80)" />
+                <path d="M360 80 L372.5 50 L385 80 Z" fill="#ffb74d" transform="rotate(15 360 80)" />
+                {/* Regla */}
+                <rect x="100" y="340" width="280" height="35" fill="#4dd0e1" opacity="0.9" />
+                <path d="M110 340 v10 M140 340 v15 M170 340 v10 M200 340 v15 M230 340 v10 M260 340 v15 M290 340 v10 M320 340 v15 M350 340 v10" stroke="white" strokeWidth="2" />
+                {/* Estudiante 1 */}
+                <circle cx="190" cy="220" r="45" fill="#3b8d99" />
+                <rect x="150" y="265" width="80" height="90" rx="15" fill="#1a5f7a" />
+                {/* Estudiante 2 */}
+                <circle cx="310" cy="240" r="40" fill="#ff8a65" />
+                <rect x="275" y="280" width="70" height="75" rx="15" fill="#e57373" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div className="landing-footer-stats">
+          <div className="stat-item"><strong>+100</strong><span>Cursos</span></div>
+          <div className="stat-item"><strong>+500</strong><span>Estudiantes</span></div>
+          <div className="stat-item"><strong>24/7</strong><span>Acceso</span></div>
+        </div>
       </div>
     );
   }
