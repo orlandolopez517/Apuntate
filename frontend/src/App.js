@@ -28,7 +28,6 @@ function App() {
           {!token ? (
             <>
               <Link to="/login" className="nav-link">Entrar</Link>
-              <Link to="/register" className="nav-link">Registro</Link>
             </>
           ) : (
             <span className="nav-link" onClick={handleLogout} style={{cursor: 'pointer'}}>

@@ -27,7 +27,9 @@ function CourseList() {
     return (
       <div className="course-list-container">
         <h2>Contenido Privado</h2>
-        <p>Por favor, <Link to="/login">inicia sesión</Link> para ver tus apuntes.</p>
+        <p>
+          Por favor, <Link to="/login">inicia sesión</Link> o <Link to="/register">regístrate</Link> para ver tus apuntes.
+        </p>
       </div>
     );
   }
