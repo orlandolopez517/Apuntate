@@ -118,13 +118,13 @@ function MemoryGame() {
 
   return (
     <div className="memory-game-container">
-      <h2>Juego de Memorizar Vocabulario</h2>
+      <h2>Memorizate</h2>
       {displayFlashcards.length > 0 ? (
         <>
           {!gameStarted && (
             <div className="game-controls">
               <button onClick={startGame}>Iniciar Juego</button>
-              <button onClick={refreshVocabulary} className="secondary-button">Actualizar Vocabulario</button>
+              <button onClick={refreshVocabulary} className="secondary-button">Actualizar</button>
               <Link to="/"> {/* <-- ¡Nuevo botón para regresar a la página principal! */}
                 <button className="tertiary-button">Volver a Cursos</button>
               </Link>

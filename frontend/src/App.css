@@ -559,16 +559,71 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #f0f2f5;
+  background-color: #0b0e14; /* Fondo oscuro base para que resalte la ruleta */
   min-height: calc(100vh - 60px);
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Efecto de Ruleta Giratoria (Inspirado en el link de Pinterest) */
+.memory-game-container::before {
+  content: '';
+  position: absolute;
+  width: 300%; /* Muy grande para cubrir toda la pantalla al girar */
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  background: conic-gradient(
+    from 0deg,
+    #ff3e3e 0deg 15deg,
+    #1a1a1a 15deg 30deg,
+    #ff3e3e 30deg 45deg,
+    #1a1a1a 45deg 60deg,
+    #ff3e3e 60deg 75deg,
+    #1a1a1a 75deg 90deg,
+    #ff3e3e 90deg 105deg,
+    #1a1a1a 105deg 120deg,
+    #ff3e3e 120deg 135deg,
+    #1a1a1a 135deg 150deg,
+    #ff3e3e 150deg 165deg,
+    #1a1a1a 165deg 180deg,
+    #ff3e3e 180deg 195deg,
+    #1a1a1a 195deg 210deg,
+    #ff3e3e 210deg 225deg,
+    #1a1a1a 225deg 240deg,
+    #ff3e3e 240deg 255deg,
+    #1a1a1a 255deg 270deg,
+    #ff3e3e 270deg 285deg,
+    #1a1a1a 285deg 300deg,
+    #ff3e3e 300deg 315deg,
+    #1a1a1a 315deg 330deg,
+    #ff3e3e 330deg 345deg,
+    #1a1a1a 345deg 360deg
+  );
+  animation: rotateRoulette 40s linear infinite;
+  z-index: -1;
+  opacity: 0.25; /* Sutil para no distraer del juego */
+  filter: blur(2px); /* Suaviza los bordes de los colores */
+}
+
+@keyframes rotateRoulette {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .memory-game-container h2 {
-  color: #333;
+  font-size: 4em; /* Más grande para que el dorado luzca mejor */
+  font-weight: 900;
+  text-transform: uppercase;
   margin-bottom: 25px;
-  font-size: 2em;
+  background: linear-gradient(to bottom, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(2px 5px 10px rgba(0, 0, 0, 0.9));
   text-align: center;
+  letter-spacing: 2px;
 }
 
 .flashcards-grid {
@@ -628,20 +683,22 @@ body {
 }
 
 .flashcard-front {
-  background-color: #007bff;
-  color: white;
-  font-size: 1.2em;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+  color: #BF953F; /* Color dorado para el texto o icono frontal */
+  font-size: 2.5em;
   font-weight: bold;
+  border: 3px solid #BF953F;
 }
 
 .flashcard-back {
-  background-color: #FFC0CB;
-  color: #333;
+  background-color: #ffffff;
+  color: #0b0e14;
   transform: rotateY(180deg);
-  font-size: 0.9em;
+  font-size: 1.1em;
   line-height: 1.3;
   text-align: center;
-  border: 1px solid #FF99AA;
+  border: 3px solid #B38728;
+  font-weight: 600;
 }
 
 .flashcard.matched {

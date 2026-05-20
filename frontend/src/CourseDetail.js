@@ -187,7 +187,7 @@ function CourseDetail() {
                   <div className="activities-content">
                     {/* Botón para ir al juego de memorizar */}
                     <Link to="/juego-memorizar">
-                        <button className="activity-button">Ir al Juego de Memorizar</button>
+                        <button className="activity-button">Ir al Juego Memorizate</button>
                     </Link>
                     {/* El enunciado "Aquí se incluirán otras actividades interactivas para esta lección en el futuro." ha sido removido. */}
 
