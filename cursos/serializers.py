@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
+import re
 from .models import Curso, Leccion, Flashcard, QuizQuestion, QuizOption # Importa todos los modelos necesarios
 
 # Serializador para el modelo Flashcard
@@ -53,6 +55,20 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email', 'password')
 
+    def validate_password(self, value):
+        # 1. Ejecuta los validadores configurados en settings.py (Longitud, contraseñas comunes, etc.)
+        validate_password(value)
+        
+        # 2. Validación personalizada de "Complejidad Estándar"
+        if not re.search(r'[A-Z]', value):
+            raise serializers.ValidationError("La contraseña debe contener al menos una letra mayúscula.")
+        if not re.search(r'[0-9]', value):
+            raise serializers.ValidationError("La contraseña debe contener al menos un número.")
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', value):
+            raise serializers.ValidationError("La contraseña debe contener al menos un carácter especial.")
+        
+        return value
+
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
@@ -64,3 +80,14 @@ class PasswordResetRequestSerializer(serializers.Serializer):
 # Serializador para confirmar la nueva contraseña
 class PasswordResetConfirmSerializer(serializers.Serializer):
     new_password = serializers.CharField(write_only=True, min_length=8)
+
+    def validate_new_password(self, value):
+        validate_password(value)
+        if not re.search(r'[A-Z]', value):
+            raise serializers.ValidationError("La contraseña debe contener al menos una letra mayúscula.")
+        if not re.search(r'[0-9]', value):
+            raise serializers.ValidationError("La contraseña debe contener al menos un número.")
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', value):
+            raise serializers.ValidationError("La contraseña debe contener al menos un carácter especial.")
+        
+        return value

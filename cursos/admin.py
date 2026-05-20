@@ -5,6 +5,7 @@ from .models import Curso, Leccion, Flashcard, QuizQuestion, QuizOption
 admin.site.site_header = "Apuntate"
 admin.site.site_title = "Login Apuntate"
 admin.site.index_title = "Administrador de contenidos"
+admin.site.site_url = None
 
 # Inline para opciones de Quiz dentro de QuizQuestion (DEFINICIÓN A NIVEL SUPERIOR)
 class QuizOptionInline(admin.TabularInline):
