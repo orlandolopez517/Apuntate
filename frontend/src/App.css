@@ -30,7 +30,21 @@ body {
   text-decoration: none;
   font-size: 1.1em;
   margin-right: 20px;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.nav-auth {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.nav-auth .nav-link {
+  background-color: #4ca9b6; /* Tonalidad clara del azul/cian principal */
+  padding: 8px 20px;
+  border-radius: 25px;
+  margin-right: 0;
+  font-weight: 500;
 }
 
 .nav-link:hover {

@@ -25,15 +25,15 @@ function App() {
         <nav className="navbar">
           <Link to="/" className="nav-link">Cursos</Link>
           <Link to="/juego-memorizar" className="nav-link">Juego</Link>
-          {!token ? (
-            <>
-              <Link to="/login" className="nav-link">Entrar</Link>
-            </>
-          ) : (
-            <span className="nav-link" onClick={handleLogout} style={{cursor: 'pointer'}}>
-              Cerrar Sesión ({username})
-            </span>
-          )}
+          <div className="nav-auth">
+            {!token ? (
+              <Link to="/login" className="nav-link" style={{ marginRight: 0 }}>Entrar</Link>
+            ) : (
+              <span className="nav-link" onClick={handleLogout} style={{ cursor: 'pointer', marginRight: 0 }}>
+                Cerrar Sesión ({username})
+              </span>
+            )}
+          </div>
         </nav>
 
         <Routes>
