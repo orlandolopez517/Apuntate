@@ -43,7 +43,7 @@ function CourseList() {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // Partículas blancas para máximo contraste
+        ctx.fillStyle = 'rgba(59, 141, 153, 0.7)'; // Partículas en tono azul oscuro para resaltar sobre el verde
         ctx.fill();
       }
     }
@@ -62,7 +62,7 @@ function CourseList() {
           const dist = Math.hypot(p.x - particles[j].x, p.y - particles[j].y);
           if (dist < 120) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.6 - dist / 120})`; // Líneas blancas sutiles
+            ctx.strokeStyle = `rgba(59, 141, 153, ${0.5 - dist / 120})`; // Líneas en tono azul oscuro con opacidad dinámica
             ctx.lineWidth = 0.5;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
