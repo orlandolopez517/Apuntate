@@ -5,9 +5,9 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  /* Imagen minimalista de fondo (Textura suave) */
-  background: url('./fondo_cursos.jpg') no-repeat center center fixed;
-  background-size: cover;
+  /* Fondo degradado igual al de la landing page */
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  background-attachment: fixed;
   color: #333;
 }
 
@@ -105,8 +105,8 @@ body {
   position: relative;
   padding-bottom: 15px;
 
-  /* Degradado verde acentuado con efecto de sombra para resaltar */
-  background: linear-gradient(to bottom, #ffffff 10%, #2ecc71 90%);
+  /* Degradado rojo acentuado para coincidir con la sección de bienvenida */
+  background: linear-gradient(to bottom, #ffffff 10%, #e74c3c 90%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.6));
@@ -117,7 +117,7 @@ body {
   content: '';
   width: 80px;
   height: 4px;
-  background-color: #2ecc71; /* Tono verde a juego con el título */
+  background-color: #e74c3c; /* Tono rojo a juego con el título */
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -1179,7 +1179,6 @@ body {
 
 /* --- Estilos Landing Page (Ajuste sin Scroll) --- */
 .landing-container {
-  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); /* Verde menta degradado para resaltar el efecto */
   height: calc(100vh - 65px); /* Resta la altura aproximada del navbar */
   display: flex;
   flex-direction: column;
@@ -1188,19 +1187,22 @@ body {
   overflow: hidden;
   padding: 20px 0;
   box-sizing: border-box;
-  position: relative;
-  z-index: 1;
 }
 
 .particle-canvas {
-  position: absolute;
+  position: fixed; /* Cambiado a fixed para que se mantenga al hacer scroll */
   top: 0;
   left: 0;
   z-index: -1;
   pointer-events: none;
 }
 
-.landing-container::before {
+.landing-container, .authenticated-list-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.landing-container::before, .authenticated-list-wrapper::before {
   content: "";
   position: absolute;
   width: 300px;
@@ -1214,7 +1216,7 @@ body {
   animation: floatBlobs 20s infinite alternate;
 }
 
-.landing-container::after {
+.landing-container::after, .authenticated-list-wrapper::after {
   content: "";
   position: absolute;
   width: 400px;

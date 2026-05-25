@@ -11,10 +11,7 @@ function CourseList() {
   const token = localStorage.getItem('token');
   const canvasRef = useRef(null);
 
-  // Efecto para la animación de partículas (solo si no hay token)
   useEffect(() => {
-    if (token) return;
-
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -76,8 +73,8 @@ function CourseList() {
     init();
     animate();
     window.addEventListener('resize', resize);
-    return () => window.removeEventListener('resize', resize);
-  }, [token]);
+    return () => window.removeEventListener('resize', resize); // Limpieza del evento al desmontar
+  }, [token, loading]); // Se reinicia cuando cambia el token o cuando termina de cargar los datos
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/cursos/`, {
@@ -143,8 +140,9 @@ function CourseList() {
   if (loading) return <p>Cargando cursos...</p>;
 
   return (
-    // ¡Aquí se asegura que este div tenga la clase 'course-list-container'!
-    <div>
+    // Usamos 'authenticated-list-wrapper' para heredar los efectos de fondo (blobs)
+    <div className="authenticated-list-wrapper">
+      <canvas ref={canvasRef} className="particle-canvas" />
       <div className="hero-section">
         <h1>Bienvenido a Apuntate</h1>
         <p>Repasa, aprende y domina tus temas con cuestionarios interactivos</p>
