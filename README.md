@@ -1,4 +1,4 @@
-# 📚 Apuntes Interactivos - Tu Plataforma de Repaso Digital
+# 📚 Apuntate - Tu Plataforma de Repaso Digital
 
 Una plataforma intuitiva para guardar, organizar y repasar tus apuntes de estudio con herramientas interactivas. Convierte tus notas en sesiones de repaso dinámicas con cuestionarios y juegos de memoria para aprender mejor.
 
