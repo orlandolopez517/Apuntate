@@ -685,20 +685,27 @@ body {
 .flashcard-front {
   background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
   color: #BF953F; /* Color dorado para el texto o icono frontal */
-  font-size: 2.5em;
+  font-size: 1.2em; /* Reducido de 2.5em para que quepan palabras */
   font-weight: bold;
   border: 3px solid #BF953F;
+  word-break: break-word; /* Permite romper palabras largas */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .flashcard-back {
   background-color: #ffffff;
   color: #0b0e14;
   transform: rotateY(180deg);
-  font-size: 1.1em;
+  font-size: 1em; /* Ajuste ligero para consistencia */
   line-height: 1.3;
   text-align: center;
   border: 3px solid #B38728;
   font-weight: 600;
+  word-break: break-word; /* Evita que el significado se salga */
+  padding: 10px;
 }
 
 .flashcard.matched {
