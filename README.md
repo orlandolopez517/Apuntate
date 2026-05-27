@@ -1,3 +1,9 @@
+# Pagos y aportes  voluntarios
+
+Recuerda que esta iniciativa no tiene  animo de lucro  dado que el codigo esta disponible  para todos,  en caso de  que se requiera ayuda  con la instalacion  se  cobraran 50000 pesos por la  intalacion en render u otros hosting. En ccaso de que  cuentes  con conocimientos  basicos  en el area de Programacion puedes  seguir las  instrucciones. 
+
+Nequi 3214602471
+
 # 📚 Apuntate - Tu Plataforma de Repaso Digital
 
 Una plataforma intuitiva para guardar, organizar y repasar tus apuntes de estudio con herramientas interactivas. Convierte tus notas en sesiones de repaso dinámicas con cuestionarios y juegos de memoria para aprender mejor.
@@ -43,8 +49,8 @@ Una plataforma intuitiva para guardar, organizar y repasar tus apuntes de estudi
 
 1. **Clonar repositorio**
 ```bash
-git clone https://github.com/tu-usuario/Cursos_Gratuitos.git
-cd Cursos_Gratuitos
+git clone https://github.com/orlandolopez517/Apuntate
+cd Apuntate
 ```
 
 2. **Backend (Python)**
@@ -74,9 +80,9 @@ npm start
 ```
 
 La app estará disponible en:
-- Frontend: http://localhost:3000
-- Admin: http://localhost:8000/admin
-- API: http://localhost:8000/api
+- Web site: https://apuntate-1.onrender.com/
+- Admin (interfaz de la base de datos): https://apuntate-1.onrender.com/admin/
+
 
 ---
 
@@ -89,7 +95,7 @@ Para desplegar la aplicación en la nube (gratis), sigue la guía completa:
 ### Resumen rápido:
 1. Crea una BD PostgreSQL en Render
 2. Crea un Web Service conectado a tu GitHub
-3. Configura variables de entorno (SECRET_KEY, DATABASE_URL, etc.)
+3. Configura las variables de entorno: `SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS`, `DATABASE_URL`, `CORS_ALLOWED_ORIGINS`, `DJANGO_SUPERUSER_USERNAME`, `DJANGO_SUPERUSER_PASSWORD`, `DJANGO_SUPERUSER_EMAIL`, `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_USE_TLS`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD` y `DEFAULT_FROM_EMAIL`.
 4. ¡Listo! Tu app estará en línea
 
 ---
@@ -175,14 +181,11 @@ Este proyecto está bajo licencia [MIT](./LICENSE)
 
 ## 🎓 Próximas Mejoras
 
-- [ ] Autenticación de usuarios (tus apuntes privados)
 - [ ] Exportar apuntes a PDF
 - [ ] Sistema de etiquetas y búsqueda avanzada
 - [ ] Estadísticas de repaso (cuánto estudiaste)
 - [ ] Compartir apuntes con compañeros
-- [ ] Integración con Cloudinary para imágenes
 - [ ] Sincronización offline
-- [ ] Modo oscuro
 
 ---estudiar mejor y recordar más
 
