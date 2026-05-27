@@ -1,6 +1,6 @@
 """
 Configuración de Django para el proyecto core.
-Generado por 'django-admin startproject' usando Django 6.0.1.
+Generado para despliegue en Render.
 """
 
 from pathlib import Path
@@ -18,11 +18,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-m#+5x=w3z8y9e@&h-m7#b
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 # ALLOWED_HOSTS debe incluir tu dominio de Render
+# Limpia protocolos (incluyendo errores como 'ahttp'), puertos y rutas
 ALLOWED_HOSTS = [
-    host.strip().replace('https://', '').replace('http://', '').split('/')[0] 
+    host.strip().replace('https://', '').replace('http://', '').replace('ahttp://', '').replace('ahttps://', '').split('/')[0].split(':')[0]
     for host in os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 ]
-
 
 # Application definition
 INSTALLED_APPS = [
