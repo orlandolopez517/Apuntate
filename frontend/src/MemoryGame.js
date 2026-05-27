@@ -146,8 +146,8 @@ function MemoryGame() {
           )}
 
           {gameStarted && allCardsMatched && (
-            <div className="game-controls">
-              <p>¡Felicidades! Has emparejado todas las tarjetas.</p>
+            <div className="game-controls game-over-controls">
+              <p className="game-win-message">¡Felicidades! Has emparejado todas las tarjetas.</p>
               <button onClick={startGame}>Volver a Jugar</button>
               <button onClick={refreshVocabulary} className="secondary-button">Actualizar Vocabulario</button>
               <Link to="/"> {/* <-- ¡También aquí para cuando se termina el juego! */}

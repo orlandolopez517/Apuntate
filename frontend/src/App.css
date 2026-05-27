@@ -727,6 +727,11 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilo para el mensaje de felicitaciones del juego de memoria */
+.game-win-message {
+  color: #f0f0f0; /* Un gris muy claro para que resalte sobre el fondo oscuro */
+  font-size: 1.3em;
+}
 .game-controls button:hover {
   background-color: #218838;
 }
